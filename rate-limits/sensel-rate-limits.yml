@@ -1,0 +1,26 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://guide.sensel.com/api/ , https://guide.sensel.com/api_adv/ ,
+  https://guide.sensel.com/sensel_h.html ,
+  https://raw.githubusercontent.com/sensel/sensel-api/master/sensel-lib/src/sensel.h
+name: Sensel API rate limits
+limit_count: 0
+limits: []
+response_headers: []
+note: >-
+  Not applicable, and recorded as such rather than omitted. The Sensel API is a local C library
+  speaking to a USB/serial device; there is no server, no key, no quota and therefore no rate
+  limiting and no rate-limit response headers. The nearest published throughput control is a
+  device-side frame-rate ceiling the caller sets itself — senselSetMaxFrameRate() /
+  senselGetMaxFrameRate() alongside senselSetScanMode() and senselSetScanDetail() — which governs
+  how fast the sensor scans, not how often a client may call.
+device_throughput_controls:
+- call: senselSetMaxFrameRate
+  purpose: Caller-set ceiling on device scan frame rate.
+- call: senselSetScanDetail
+  purpose: SCAN_DETAIL_HIGH / MEDIUM / LOW — trades resolution for throughput.
+- call: senselSetScanMode
+  purpose: SCAN_MODE_DISABLE / SYNC / ASYNC.
+- call: senselSetBufferControl
+  purpose: Frame buffering depth.

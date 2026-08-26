@@ -1,23 +1,121 @@
 aid: sensel
 name: Sensel
-description: 'Sensel is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Sensel is a Sunnyvale, California touch-input company founded in 2013 by Ilya Rosenberg and
+  Aaron Zarraga, building high-resolution force-sensing hardware — the Morph pressure-sensitive
+  input device and the force-sensing touchpad technology shipped in laptops such as Lenovo's
+  ThinkPad X1 Titanium Yoga. Its developer surface is not a web API: the Sensel API is an
+  open-source, MIT-licensed C library (LibSensel) that talks to Sensel devices over USB/serial,
+  published at github.com/sensel/sensel-api with C, C#, Python, Arduino, Processing, Max and
+  Pure Data bindings and documented at guide.sensel.com. Sensel's intellectual property,
+  physical assets and trademarks were acquired by Cirque Corporation (an Alps Alpine company),
+  and sensel.com now 301-redirects to cirque.com/sensel.
+image: https://guide.sensel.com/img/sensel-logo-blue.svg
 url: https://raw.githubusercontent.com/api-evangelist/sensel/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-26'
 modified: '2026-08-26'
 tags:
 - Company
-apis: []
+- Touch Input
+- Haptics
+- Sensors
+- Hardware
+- Human Interface Devices
+- Embedded
+- Open Source
+- Device SDK
+- Music Technology
+apis:
+- name: Sensel API (LibSensel)
+  description: >-
+    The Sensel API is a C library for communicating with Sensel devices (Morph and Sensel
+    sensor boards). It is a LOCAL DEVICE API, not an HTTP service: an application links
+    LibSensel and LibSenselDecompress and opens the device over USB/serial, so there is no
+    network base URL. The published surface is 44 senselXxx() calls covering device
+    discovery/open/close, sensor info, scan mode and detail, frame allocation and reads,
+    contact and force frames, LED control, firmware info and raw register access. Bindings
+    are published for C, C#, Python, Arduino, Processing, Max (Cycling '74) and Pure Data.
+  humanURL: https://guide.sensel.com/api/
+  tags:
+  - Touch Input
+  - Force Sensing
+  - Device SDK
+  x-transport: local-library-usb-serial
+  x-no-base-url-reason: >-
+    LibSensel is linked into the host application and speaks to the device over USB/serial;
+    the provider publishes no HTTP endpoint, so no baseURL exists to record.
+  properties:
+  - type: Documentation
+    url: https://guide.sensel.com/
+  - type: APIReference
+    url: https://guide.sensel.com/sensel_h.html
+  - type: GettingStarted
+    url: https://guide.sensel.com/api/
+  - type: SourceCode
+    url: https://github.com/sensel/sensel-api
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/sensel-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://sensel.com/
+- type: Documentation
+  url: https://guide.sensel.com/
+- type: APIReference
+  url: https://guide.sensel.com/sensel_h.html
+- type: GettingStarted
+  url: https://guide.sensel.com/api/
+- type: GitHubOrganization
+  url: https://github.com/sensel
+- type: SourceCode
+  url: https://github.com/sensel/sensel-api
+- type: Support
+  url: https://github.com/sensel/sensel-api/issues
+- type: PrivacyPolicy
+  url: https://www.cirque.com/privacy-policy
+- type: Packages
+  url: packages/sensel-packages.yml
+- type: SDKs
+  url: packages/sensel-packages.yml
+- type: ErrorCatalog
+  url: errors/sensel-status-codes.yml
+- type: Lifecycle
+  url: lifecycle/sensel-lifecycle.yml
+- type: LLMsTxt
+  url: llms/sensel-llms.txt
+- type: Plans
+  url: plans/sensel-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/sensel-rate-limits.yml
+x-enrichment:
+  date: '2026-08-26'
+  status: minimal
+  artifacts_added: 8
+  pass: local-v1
+x-coverage:
+  state: unreadable
+  reason: no-machine-readable-spec
+  detail: >-
+    Sensel's API is a local MIT-licensed C library (LibSensel) that talks to Morph/sensor hardware
+    over USB/serial — guide.sensel.com and the sensel.h header on GitHub are fully readable by a
+    human, but the provider publishes no OpenAPI, AsyncAPI, GraphQL SDL, Postman collection or
+    JSON Schema anywhere, and there is no HTTP endpoint for one to describe.
+  evidence:
+  - url: https://guide.sensel.com/
+    status: 200
+  - url: https://guide.sensel.com/openapi.json
+    status: 404
+  - url: https://sensel.com/openapi.json
+    status: 404
+  - url: https://sensel.com/.well-known/agent-card.json
+    status: 404
+  - url: https://sensel.com/
+    status: 301
+  checked: '2026-08-26'

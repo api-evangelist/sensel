@@ -1,0 +1,71 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://guide.sensel.com/ , https://github.com/sensel/sensel-api ,
+  https://www.cirque.com/sensel , https://www.cirque.com/news-and-events-blog/cirque-sensel-announcement
+summary: >-
+  Sensel publishes no versioning policy, no deprecation policy, no SLA and no status page for its
+  API. The API itself is a source-distributed C library with no tags or releases, so there is no
+  version identifier a consumer can pin. The dominant lifecycle fact is corporate: Cirque
+  Corporation announced on 2025-04-22 that it had licensed Sensel's haptic forcepad technology and
+  would take over direct customer support and development for the notebook PC market, and
+  cirque.com/sensel now states Cirque acquired Sensel's key intellectual property, physical assets
+  and trademarks. sensel.com 301-redirects to cirque.com/sensel and every path beneath sensel.com
+  404s. Only guide.sensel.com and the GitHub organization remain as live Sensel-branded surfaces.
+versioning:
+  scheme: none
+  documented: false
+  evidence: >-
+    The sensel-api repository publishes no git tags and no GitHub releases; guide.sensel.com
+    carries no version banner (footer reads "Copyright 2017-2021 sensel"). The only versioned
+    first-party artifact in the organization is sensel-controller-scripts (releases 1.0-1.2).
+  note: >-
+    LibSensel exposes senselGetFirmwareInfo() for DEVICE firmware version, but nothing reports the
+    library's own version.
+deprecation_policy:
+  published: false
+  sunset_headers: false
+  note: >-
+    No deprecation or sunset policy is published, and there is no HTTP transport on which
+    RFC 8594 Deprecation/Sunset headers could be carried.
+sla:
+  published: false
+status_page:
+  present: false
+  probed:
+  - url: https://status.sensel.com/
+    status: 000
+    note: DNS does not resolve.
+support:
+  channel: https://github.com/sensel/sensel-api/issues
+  note: >-
+    Notebook-PC customer support was transferred to Cirque per the 2025-04-22 announcement;
+    https://www.cirque.com/contact-cirque returns 200.
+milestones:
+- date: '2013'
+  event: Sensel founded in Sunnyvale, California by Ilya Rosenberg and Aaron Zarraga.
+- date: '2015'
+  event: Kickstarter campaign funds the Sensel Morph.
+- date: '2021-01'
+  event: Sensel force-sensing touchpad ships in Lenovo's ThinkPad X1 Titanium Yoga.
+- date: '2022-05-12'
+  event: >-
+    Last code push to sensel-api, the repository carrying LibSensel and the C/C#/Python examples.
+- date: '2025-04-22'
+  event: >-
+    Cirque Corporation announces it has licensed Sensel's haptic forcepad technology, takes over
+    direct customer support and development for the notebook PC market, and hires a selection of
+    Sensel employees.
+    (https://www.cirque.com/news-and-events-blog/cirque-sensel-announcement)
+- date: '2026-08-26'
+  event: >-
+    Probed: sensel.com 301s to cirque.com/sensel, which states Cirque acquired Sensel's key
+    intellectual property, physical assets and trademarks and folds the technology into the
+    GlideSense haptic forcepad line. All sensel.com sub-paths 404.
+decay_signals:
+- >-
+  Every first-party code repository was last pushed in 2022 or earlier; the newest is
+  sendowl-licenses (2022-12-08) and the API itself is 2022-05-12.
+- Documentation copyright line still reads 2017-2021; docs sitemap lastmod is 2022-05-12.
+- The library README states no Apple Silicon build exists, four years after Apple Silicon shipped.
+- The company's own product/support/store/blog pages under sensel.com are all gone (404).

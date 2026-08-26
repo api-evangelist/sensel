@@ -1,0 +1,67 @@
+# Sensel
+
+> Sensel builds high-resolution force-sensing touch hardware — the Morph pressure-sensitive input
+> device and the force-sensing touchpad technology shipped in laptops such as Lenovo's ThinkPad X1
+> Titanium Yoga. The "Sensel API" is NOT a web API: it is an open-source, MIT-licensed C library
+> (LibSensel) that an application links and uses to talk to a Sensel device over USB/serial.
+> There is no HTTP endpoint, no base URL, no API key, no account and no rate limit.
+> Cirque Corporation (an Alps Alpine company) licensed the haptic forcepad technology in April
+> 2025 and now states it acquired Sensel's key IP, physical assets and trademarks;
+> sensel.com redirects to cirque.com/sensel.
+
+## What an agent can and cannot do here
+
+- There is NO callable network API. An agent cannot invoke Sensel functionality remotely.
+- Using this API requires physical Sensel hardware attached to the machine running the code.
+- No OpenAPI, AsyncAPI, GraphQL SDL, Protobuf, WSDL, MCP server or A2A agent card is published.
+  All /.well-known/* paths 404 on every Sensel host (probed 2026-08-26).
+
+## Documentation
+
+- [Sensel Morph Documentation](https://guide.sensel.com/): documentation hub — hardware, SenselApp, Overlay Designer, and the API guides.
+- [API primer](https://guide.sensel.com/api/): getting started with polling the sensor; explains the force array (185x105 sensels on the Morph) and the labels array.
+- [API advanced](https://guide.sensel.com/api_adv/): custom sensor configuration and full device details.
+- [API with Arduino](https://guide.sensel.com/api_arduino/): the Arduino binding.
+- [API calls reference](https://guide.sensel.com/sensel_h.html): sensel.h reference.
+- [API force calls reference](https://guide.sensel.com/sensel_decompress_h.html): sensel_decompress.h reference.
+
+## Source and SDKs
+
+- [sensel-api](https://github.com/sensel/sensel-api): LibSensel + LibSenselDecompress source, platform installers, and C / C# / Python examples (MIT). No tags, no releases; last code push 2022-05-12.
+- [sensel-api-arduino](https://github.com/sensel/sensel-api-arduino): Arduino binding (MIT).
+- [sensel-api-processing](https://github.com/sensel/sensel-api-processing): Processing binding (Apache-2.0).
+- [PD-objects](https://github.com/sensel/PD-objects): Pure Data externals (MIT), distributed via Deken.
+- [C74-Max-Examples](https://github.com/sensel/C74-Max-Examples): Cycling '74 Max examples (MIT); the `sensel` object ships via the Max Package Manager.
+- [sensel-controller-scripts](https://github.com/sensel/sensel-controller-scripts): DAW controller scripts; latest release 1.2 (2020-04-27).
+- [GitHub organization](https://github.com/sensel): all first-party repositories.
+
+No first-party Sensel package exists on npm, PyPI, RubyGems, crates.io, Maven Central, NuGet,
+pkg.go.dev or the Arduino Library Manager. Everything is cloned or installed from source.
+
+## API shape
+
+44 published `senselXxx()` entry points covering: device discovery and open/close
+(`senselGetDeviceList`, `senselOpen`, `senselOpenDeviceByID`, `senselOpenDeviceBySerialNum`,
+`senselOpenDeviceByComPort`, `senselClose`, `senselSoftReset`); sensor info
+(`senselGetSensorInfo`, `senselGetFirmwareInfo`); scan configuration (`senselSetScanMode`,
+`senselSetScanDetail`, `senselSetMaxFrameRate`, `senselSetBufferControl`,
+`senselSetContactsMinForce`, `senselSetContactsMask`, `senselSetContactsEnableBlobMerge`,
+`senselSetDynamicBaselineEnabled`); frames (`senselAllocateFrameData`, `senselFreeFrameData`,
+`senselSetFrameContent`, `senselStartScanning`, `senselStopScanning`, `senselReadSensor`,
+`senselGetNumAvailableFrames`, `senselGetFrame`); LEDs (`senselGetNumAvailableLEDs`,
+`senselSetLEDBrightness`, `senselGetLEDBrightness`, `senselGetMaxLEDBrightness`); and raw
+register access (`senselReadReg`, `senselWriteReg`, `senselReadRegVS`, `senselWriteRegVS`).
+
+Every call returns `SenselStatus`, which has exactly two values: `SENSEL_OK` (0) and
+`SENSEL_ERROR` (-1). There are no error codes, messages or remediation hints.
+
+## Company
+
+- [Website](https://sensel.com/) (301 -> https://www.cirque.com/sensel)
+- [Cirque/Sensel announcement, 2025-04-22](https://www.cirque.com/news-and-events-blog/cirque-sensel-announcement)
+- [Privacy policy (Cirque, which now governs sensel.com)](https://www.cirque.com/privacy-policy)
+- [Support / issues](https://github.com/sensel/sensel-api/issues)
+
+## Profile metadata
+
+- Profiled by API Evangelist, 2026-08-26. Method: searched + probed. See apis.yml in this repository.

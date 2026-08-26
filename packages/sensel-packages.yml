@@ -1,0 +1,120 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://github.com/sensel (org repo listing via GitHub API), plus registry metadata probes
+  against registry.npmjs.org, pypi.org, rubygems.org, crates.io and arduinolibraries.info
+name: Sensel packages and SDKs
+summary: >-
+  Sensel ships its developer surface as source on GitHub, not through a language package
+  registry. LibSensel (the C core) and its language bindings are cloned or installed from
+  per-platform installers committed to the sensel-api repository. No first-party Sensel package
+  was found on npm, PyPI, RubyGems, crates.io, Maven Central, NuGet, pkg.go.dev or the Arduino
+  Library Manager. Every first-party repository's last code push predates 2023, which is the
+  clearest decay signal available for this provider.
+distribution: source-and-installer
+packages:
+- name: sensel-api
+  official: true
+  language: C
+  registry: github
+  url: https://github.com/sensel/sensel-api
+  license: MIT
+  version: null
+  published: null
+  last_code_push: '2022-05-12'
+  note: >-
+    The canonical Sensel API. Contains sensel-lib (LibSensel core source, MIT), sensel-install
+    (SenselLibWin.exe, SenselLibMac.pkg, senselliblinux.deb binary installers for LibSensel +
+    LibSenselDecompress) and sensel-examples for C, C# and Python. Ships no git tags and no
+    GitHub releases, so there is no published version to record — a consumer cannot tell which
+    library build they have from the repository alone. README notes no Apple Silicon build exists.
+- name: sensel-api-arduino
+  official: true
+  language: C/C++
+  registry: github
+  url: https://github.com/sensel/sensel-api-arduino
+  license: MIT
+  version: null
+  published: null
+  last_code_push: '2018-06-01'
+  note: >-
+    Arduino binding, installed by copying the library into Documents/Arduino/libraries. Not
+    listed in the Arduino Library Manager index (arduinolibraries.info/libraries/sensel -> 404),
+    so there is no registry version. No tags or releases.
+- name: sensel-api-processing
+  official: true
+  language: Processing/Java
+  registry: github
+  url: https://github.com/sensel/sensel-api-processing
+  license: Apache-2.0
+  version: null
+  published: null
+  last_code_push: '2017-02-11'
+  note: Processing binding. No tags, no releases, no Processing Contribution Manager listing found.
+- name: PD-objects
+  official: true
+  language: C
+  registry: github
+  url: https://github.com/sensel/PD-objects
+  license: MIT
+  version: null
+  published: null
+  last_code_push: '2021-05-17'
+  note: >-
+    Pure Data externals wrapping the Sensel API. The Sensel documentation says Pure Data objects
+    are distributed through Deken; deken.puredata.info answered 200 to a search but exposes no
+    per-package metadata endpoint that names a version, so no version is recorded.
+- name: C74-Max-Examples
+  official: true
+  language: Max
+  registry: github
+  url: https://github.com/sensel/C74-Max-Examples
+  license: MIT
+  version: null
+  published: null
+  last_code_push: '2021-11-15'
+  note: >-
+    Examples for the `sensel` object in Cycling '74 Max. The object itself is distributed through
+    the Max Package Manager, which publishes no unauthenticated metadata endpoint, so no version
+    is recorded.
+- name: sensel-controller-scripts
+  official: true
+  language: JavaScript
+  registry: github
+  url: https://github.com/sensel/sensel-controller-scripts
+  license: null
+  version: '1.2'
+  published: '2020-04-27'
+  last_code_push: '2022-01-13'
+  note: >-
+    DAW controller scripts for integrating the Morph into Bitwig/Live workflows. The only
+    first-party Sensel repository that publishes tagged releases (1.0, 1.01, 1.1, 1.2).
+registry_probes:
+- registry: npm
+  package: sensel
+  status: 200
+  first_party: false
+  note: >-
+    An unrelated `sensel` package was published to npm in February 2025 by a third party and
+    then unpublished (registry metadata records versions 0.0.1-0.0.3 and an `unpublished` entry).
+    Not a Sensel Inc. package.
+- registry: npm
+  package: sensel-api
+  status: 404
+- registry: pypi
+  package: sensel
+  status: 404
+- registry: pypi
+  package: sensel-api
+  status: 404
+- registry: rubygems
+  package: sensel
+  status: 404
+- registry: crates.io
+  package: sensel
+  status: 404
+- registry: arduino-library-manager
+  package: sensel
+  status: 404
+sdk_count: 6
+official_sdk_count: 6

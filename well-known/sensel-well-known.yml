@@ -1,0 +1,70 @@
+generated: '2026-08-26'
+method: probed
+source: direct HTTPS probes of /.well-known/* on every Sensel-controlled host
+summary: >-
+  No /.well-known document is served on any Sensel host. sensel.com serves a 301 at the root to
+  the acquirer (cirque.com/sensel) but 404s every path beneath it; guide.sensel.com (the MkDocs
+  documentation site) and sensel.github.io (GitHub Pages) return their generic 404 HTML page for
+  every probed path. No WellKnown or SecurityTxt pointer is emitted, because nothing was served.
+hosts:
+- host: sensel.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: guide.sensel.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: sensel.github.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: www.cirque.com
+  note: >-
+    Acquirer host, probed because sensel.com now 301s here. Recorded for completeness; a Cirque
+    document would not be a Sensel-published document.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+notes:
+- >-
+  www.sensel.com does not resolve (curl exit 6 / DNS failure); only the apex sensel.com answers.
+- >-
+  No A2A agent card was found on any host, so no a2a/ artifact was written — this pipeline never
+  authors an agent card on a provider's behalf.

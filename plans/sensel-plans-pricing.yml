@@ -1,0 +1,23 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://sensel.com/ (301 -> https://www.cirque.com/sensel), https://guide.sensel.com/api/ ,
+  https://github.com/sensel/sensel-api
+name: Sensel API plans and pricing
+plan_count: 0
+plans: []
+note: >-
+  There is nothing to price. The Sensel API is a free, open-source (MIT) C library distributed
+  from GitHub with no account, key, quota or metering of any kind — it runs entirely on the
+  user's machine against hardware they already own. Sensel's revenue surface was hardware
+  (the Morph and OEM force-sensing touchpads), and Sensel's own commerce pages are gone:
+  sensel.com/start and every other sensel.com sub-path return 404, with the apex 301ing to
+  cirque.com/sensel. OEM engagement is now a contact-sales motion through Cirque
+  (https://www.cirque.com/contact-cirque), which publishes no pricing.
+evidence:
+- url: https://sensel.com/start
+  status: 404
+- url: https://sensel.com/
+  status: 301
+- url: https://www.cirque.com/sensel
+  status: 200

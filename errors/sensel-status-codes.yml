@@ -1,0 +1,41 @@
+generated: '2026-08-26'
+method: derived
+source: >-
+  https://raw.githubusercontent.com/sensel/sensel-api/master/sensel-lib/src/sensel.h
+  (SenselStatus enum and the @return contract on every SENSEL_API call), corroborated by
+  https://guide.sensel.com/sensel_h.html
+name: Sensel API status codes
+format: c-enum
+transport: local-library-usb-serial
+envelope: >-
+  Every one of the 44 published SENSEL_API entry points returns a SenselStatus value. There is no
+  error object, no message string, no error code namespace and no out-parameter carrying detail —
+  the return value IS the whole error contract.
+summary: >-
+  The Sensel API's error surface is binary. SenselStatus declares exactly two values, SENSEL_OK
+  (0) and SENSEL_ERROR (-1), and each call's doxygen comment repeats the same contract:
+  "@return SENSEL_OK on success or error". A caller can learn that a call failed; it cannot learn
+  why, cannot distinguish a device-not-found from a permissions failure from a transport timeout,
+  and has nothing to key remediation off. This is recorded as a real, published error contract,
+  not a rich one.
+codes:
+- code: SENSEL_OK
+  value: 0
+  meaning: Call was successful.
+  action: Continue.
+- code: SENSEL_ERROR
+  value: -1
+  meaning: Call returned an error.
+  action: >-
+    Undifferentiated. The library publishes no sub-codes, so the documented recovery path is to
+    re-run device discovery (senselGetDeviceList / senselOpen) and, per the repository README,
+    verify the device firmware is current. No mapping from failure cause to remediation exists.
+gaps:
+- >-
+  No error taxonomy: one failure value covers device enumeration, open, scan configuration,
+  frame allocation, frame read, LED control and raw register access alike.
+- No human-readable message or strerror-style helper is exported.
+- No retryable-vs-fatal signal, so a caller cannot decide whether to back off or abort.
+- >-
+  Not applicable: RFC 9457 problem+json, HTTP status semantics and rate-limit errors — this is a
+  local library API with no HTTP transport.
