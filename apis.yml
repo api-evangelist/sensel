@@ -10,6 +10,18 @@ description: >-
   Pure Data bindings and documented at guide.sensel.com. Sensel's intellectual property,
   physical assets and trademarks were acquired by Cirque Corporation (an Alps Alpine company),
   and sensel.com now 301-redirects to cirque.com/sensel.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 image: https://guide.sensel.com/img/sensel-logo-blue.svg
 url: https://raw.githubusercontent.com/api-evangelist/sensel/refs/heads/main/apis.yml
 x-type: company
