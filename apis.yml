@@ -85,6 +85,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: License
+  name: MIT
+  url: https://github.com/sensel/sensel-api/blob/master/LICENSE
 - type: DomainSecurity
   url: security/sensel-domain-security.yml
 - type: Website
