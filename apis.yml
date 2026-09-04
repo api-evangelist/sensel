@@ -22,6 +22,20 @@ deliveryModel:
   - repository-unlicensed
   generated: '2026-08-28'
   method: derived
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - rate-limits
+  - security
+  - {url: 'https://sensel.com/', status: 301, note: 'declared website redirects to https://www.cirque.com/sensel — a different registrable domain (sensel.com -> cirque.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
+  generated: '2026-09-02'
+  method: derived
 image: https://guide.sensel.com/img/sensel-logo-blue.svg
 url: https://raw.githubusercontent.com/api-evangelist/sensel/refs/heads/main/apis.yml
 x-type: company
