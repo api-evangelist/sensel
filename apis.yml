@@ -51,7 +51,7 @@ tags:
 - Hardware
 - Human Interface Devices
 - Embedded
-- Open-Source
+- Open Source
 - Device SDK
 - Music Technology
 tags_raw:
@@ -65,6 +65,7 @@ tags_raw:
 - Open Source
 - Device SDK
 - Music Technology
+- Open-Source
 apis:
 - name: Sensel API (LibSensel)
   description: >-
